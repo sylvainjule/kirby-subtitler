@@ -84,11 +84,11 @@ fields:
     readonly: true
 ```
 
-- **The structure entries can't be manually sorted**. The usual sorting option in the blueprint won't cut it either, entries are display depending on their starting time.
+- **The structure entries can't be manually sorted**. The usual sorting option in the blueprint won't cut it either, entries are displayed depending on their starting time.
 
 - Due to the number of displayed buttons, I didn't intend for this field to be used on a mobile panel. Small screens might run into issues.
 
-- This fields isn't meant ot deal with a tremendous amount of subtitles, rather a quick solution for synchronizing a few contents on the fly and allowing to directly link field / page objects. For extensive subtitle work, nothing beats a good old ```.srt```editor.
+- This field isn't meant to deal with a tremendous amount of subtitles, rather a quick solution for synchronizing a few contents on the fly and allowing to directly link field / page objects. For extensive subtitle work, nothing beats a good old ```.srt``` editor.
 
 ## Front-end usage
 
