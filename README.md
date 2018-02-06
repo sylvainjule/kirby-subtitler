@@ -27,9 +27,9 @@ The plugin folder must be named `subtitler` :
 ## Blueprint usage
 
 
-When using this field, you'll need to set the audio or video file to use. This is done by specifying an image field as ```src```.
+When using this field, you'll need to set the audio or video file to use. This is done by specifying an (audio / video) field as ```src```.
 
-Any field outputting a single image filename can be used as a source (ie. the ```select``` field, ```image```, ```quickselect```, etc.) :
+Any field outputting a single filename can be used as a source (ie. the ```select``` field, ```quickselect```, etc.) :
 
 ```yaml
   videofile:
