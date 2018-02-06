@@ -37,7 +37,7 @@ Any field outputting a single filename can be used as a source (ie. the ```selec
 
 ```yaml
   videofile:
-    label: The video that the subtitler field will use
+    label: Video file the subtitler field will use
     type: select
     options: videos
   subtitlerfield:
