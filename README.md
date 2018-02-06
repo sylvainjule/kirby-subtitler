@@ -105,13 +105,13 @@ How to deal with those depends on your use case, but here is a generic way of pa
 
 ```php
 <?php if($video = $page->videofile()->toFile()): 
-	  $values = [];
-  	  foreach($page->subtitlerfield()->toStructure() as $entry) {
-	      array_push($values, array('start' => $entry->start(), 'end' => $entry->end()));
-	  } ?>
+      $values = [];
+      foreach($page->subtitlerfield()->toStructure() as $entry) {
+          array_push($values, array('start' => $entry->start(), 'end' => $entry->end()));
+      } ?>
     <video data-values="<?php echo htmlspecialchars(json_encode($values)); ?>">
-		<source src="<?php echo $video->url() ?>" type="<?php echo $video->mime() ?>">
-	</video>
+        <source src="<?php echo $video->url() ?>" type="<?php echo $video->mime() ?>">
+    </video>
 <?php endif; ?>
 ```
 
