@@ -3,6 +3,8 @@
 <br>
 This plugin is a tweaked structure field allowing you to sync any content you'd like with audio or video files. Suggestions welcome.
 
+[Here is a short video preview](https://cl.ly/1C3R2X0C2L13) of what it does.
+
 <br><br>
 
 ![subtitler-screenshot](https://user-images.githubusercontent.com/14079751/35878510-c7539eb0-0b78-11e8-9a5f-360202b1f912.jpg)
