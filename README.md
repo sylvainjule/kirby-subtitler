@@ -1,9 +1,7 @@
 # Kirby Subtitler
 
 <br>
-This plugin is a tweaked structure field allowing you to sync any content you'd like with audio or video files. Suggestions welcome.
-
-[Here is a short video preview](https://cl.ly/1C3R2X0C2L13) of what it does.
+This plugin is a tweaked structure field allowing you to sync any content you'd like with audio or video files. Suggestions welcome. [Here is a short video preview](https://cl.ly/1C3R2X0C2L13) of what it does.
 
 <br><br>
 
