@@ -1,0 +1,8 @@
+{
+  "name": "subtitler",
+  "description": "Kirby field for synchronizing content with audio/video files",
+  "author": "Sylvain Julé <contact@sylvain-jule.fr>",
+  "version": "0.1",
+  "type": "kirby-plugin",
+  "license": "MIT"
+}
