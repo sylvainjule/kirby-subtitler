@@ -3,6 +3,10 @@
 <br>
 This plugin is a tweaked structure field allowing you to sync any content you'd like with audio or video files. Suggestions welcome.
 
+<br>
+
+[Here is a short video preview](https://cl.ly/1C3R2X0C2L13) of what it does.
+
 <br><br>
 
 ![subtitler-screenshot](https://user-images.githubusercontent.com/14079751/35878510-c7539eb0-0b78-11e8-9a5f-360202b1f912.jpg)
@@ -27,13 +31,13 @@ The plugin folder must be named `subtitler` :
 ## Blueprint usage
 
 
-When using this field, you'll need to set the audio or video file to use. This is done by specifying an image field as ```src```.
+When using this field, you'll need to set the audio or video file to use. This is done by specifying an (audio / video) field as ```src```.
 
-Any field outputting a single image filename can be used as a source (ie. the ```select``` field, ```image```, ```quickselect```, etc.) :
+Any field outputting a single filename can be used as a source (ie. the ```select``` field, ```quickselect```, etc.) :
 
 ```yaml
   videofile:
-    label: The video that the subtitler field will use
+    label: Video file the subtitler field will use
     type: select
     options: videos
   subtitlerfield:
@@ -80,11 +84,11 @@ fields:
     readonly: true
 ```
 
-- **The structure entries can't be manually sorted**. The usual sorting option in the blueprint won't cut it either, entries are display depending on their starting time.
+- **The structure entries can't be manually sorted**. The usual sorting option in the blueprint won't cut it either, entries are displayed depending on their starting time.
 
 - Due to the number of displayed buttons, I didn't intend for this field to be used on a mobile panel. Small screens might run into issues.
 
-- This fields isn't meant ot deal with a tremendous amount of subtitles, rather a quick solution for synchronizing a few contents on the fly and allowing to directly link field / page objects. For extensive subtitle work, nothing beats a good old ```.srt```editor.
+- This field isn't meant to deal with a tremendous amount of subtitles, rather a quick solution for synchronizing a few contents on the fly and allowing to directly link field / page objects. For extensive subtitle work, nothing beats a good old ```.srt``` editor.
 
 ## Front-end usage
 
@@ -105,13 +109,13 @@ How to deal with those depends on your use case, but here is a generic way of pa
 
 ```php
 <?php if($video = $page->videofile()->toFile()): 
-	  $values = [];
-  	  foreach($page->subtitlerfield()->toStructure() as $entry) {
-	      array_push($values, array('start' => $entry->start(), 'end' => $entry->end()));
-	  } ?>
+      $values = [];
+      foreach($page->subtitlerfield()->toStructure() as $entry) {
+          array_push($values, array('start' => $entry->start(), 'end' => $entry->end()));
+      } ?>
     <video data-values="<?php echo htmlspecialchars(json_encode($values)); ?>">
-		<source src="<?php echo $video->url() ?>" type="<?php echo $video->mime() ?>">
-	</video>
+        <source src="<?php echo $video->url() ?>" type="<?php echo $video->mime() ?>">
+    </video>
 <?php endif; ?>
 ```
 
