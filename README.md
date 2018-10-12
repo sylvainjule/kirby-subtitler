@@ -15,6 +15,7 @@ This plugin allows you to sync any content with audio or video files.
 - [4. Template usage](#4-template-usage)
 - [5. Crédits](#5-to-do)
 - [6. License](#6-license)
+- [7. Crédits](#7-credits)
 
 
 #### TLDR – Just get me started 👀
@@ -198,7 +199,7 @@ subs:
 
 ## 4. Template usage
 
-THis will be filled. There will probably be methods. A way to generate a srt file. Stuff like that.
+This will be filled. There will probably be methods. A way to generate a srt file. Stuff like that.
 
 <br/>
 
@@ -215,3 +216,9 @@ THis will be filled. There will probably be methods. A way to generate a srt fil
 ## 6. License
 
 MIT
+
+<br/>
+
+## 7. Credits
+
+- The fields synchronization has been taken from [@rasteiner](https://github.com/rasteiner/kn-map-section)'s map section. 🙏
