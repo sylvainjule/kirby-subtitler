@@ -207,9 +207,10 @@ This will be filled. There will probably be methods. A way to generate a srt fil
 
 - [ ] Resizing subs
 - [ ] Clean this mess 💥
+- [ ] Ticks => radios, buttons should be buttons, etc.
 - [ ] Hopefully [ease the type detection](https://github.com/k-next/kirby/issues/1082)
 - [ ] `addEventListeners` get fired too early
-- [ ] Update the duration
+- [X] Update the duration on file change
 
 <br/>
 
