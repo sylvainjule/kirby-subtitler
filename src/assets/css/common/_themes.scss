@@ -1,0 +1,190 @@
+/* Light or dark
+--------------------*/
+
+.subtitler[data-theme="light"] {
+	.subtitler-background {
+		background: $color-light url($pattern);
+		opacity: 0.45;
+	}
+	.subtitler-placeholder {
+		&-ctn {
+			background: lighten(#efefef, 5%);
+		}
+	}
+}
+.subtitler[data-theme="dark"] {
+	.subtitler-background {
+		background: lighten($color-dark, 10%) url($pattern);
+	}
+	.subtitler-placeholder {
+		&-ctn {
+			background: $color-dark;
+			color: #c5c5c6;
+		}
+	}
+}
+
+
+/* Timeline colors
+---------------------*/
+
+.timeline[data-theme="purple"] {
+	&.active {
+		.tick {
+			border: 1px solid $purple;
+			background: $purple;
+		}
+	}
+	.sub {
+		border: 1px solid $purple;
+		background: $purple-light;
+		color: $purple;
+	}
+}
+.timeline[data-theme="orange"] {
+	&.active {
+		.tick {
+			border: 1px solid $orange;
+			background: $orange;
+		}
+	}
+	.sub {
+		border: 1px solid $orange;
+		background: $orange-light;
+		color: $orange;
+	}
+}
+.timeline[data-theme="blue"] {
+	&.active {
+		.tick {
+			border: 1px solid $blue;
+			background: $blue;
+		}
+	}
+	.sub {
+		border: 1px solid $blue;
+		background: $blue-light;
+		color: $blue;
+	}
+}
+.timeline[data-theme="green"] {
+	&.active {
+		.tick {
+			border: 1px solid $green;
+			background: $green;
+		}
+	}
+	.sub {
+		border: 1px solid $green;
+		background: $green-light;
+		color: $green;
+	}
+}
+.timeline[data-theme="red"] {
+	&.active {
+		.tick {
+			border: 1px solid $red;
+			background: $red;
+		}
+	}
+	.sub {
+		border: 1px solid $red;
+		background: $red-light;
+		color: $red;
+	}
+}
+
+
+/* Ranges colors
+---------------------*/
+
+.subtitler[data-color="purple"] {
+	.subtitler-editor-range {
+		.start, .end {
+			border-right: 1px dashed $purple;
+			&-time {
+				background: $purple;
+				&:after {
+					border-bottom-color: $purple;
+				}
+			}
+		}
+	}
+	.range-button.active {
+		&:after {
+			background: $purple;
+		}
+	}
+}
+.subtitler[data-color="orange"] {
+	.subtitler-editor-range {
+		.start, .end {
+			border-right: 1px dashed $orange;
+			&-time {
+				background: $orange;
+				&:after {
+					border-bottom-color: $orange;
+				}
+			}
+		}
+	}
+	.range-button.active {
+		&:after {
+			background: $orange;
+		}
+	}
+}
+.subtitler[data-color="blue"] {
+	.subtitler-editor-range {
+		.start, .end {
+			border-right: 1px dashed $blue;
+			&-time {
+				background: $blue;
+				&:after {
+					border-bottom-color: $blue;
+				}
+			}
+		}
+	}
+	.range-button.active {
+		&:after {
+			background: $blue;
+		}
+	}
+}
+.subtitler[data-color="green"] {
+	.subtitler-editor-range {
+		.start, .end {
+			border-right: 1px dashed $green;
+			&-time {
+				background: $green;
+				&:after {
+					border-bottom-color: $green;
+				}
+			}
+		}
+	}
+	.range-button.active {
+		&:after {
+			background: $green;
+		}
+	}
+}
+.subtitler[data-color="red"] {
+	.subtitler-editor-range {
+		.start, .end {
+			border-right: 1px dashed $red;
+			&-time {
+				background: $red;
+				&:after {
+					border-bottom-color: $red;
+				}
+			}
+		}
+	}
+	.range-button.active {
+		&:after {
+			background: $red;
+		}
+	}
+}

@@ -1,151 +1,217 @@
-# Kirby Subtitler
+# Kirby 3 – Subtitler
 
-<br>
-This plugin is a tweaked structure field allowing you to sync any content you'd like with audio or video files. Suggestions welcome.
+This plugin allows you to sync any content with audio or video files.
 
-<br>
+[screenshot here]
 
-[Here is a short video preview](https://cl.ly/1C3R2X0C2L13) of what it does.
+## Overview
 
-<br><br>
-
-![subtitler-screenshot](https://user-images.githubusercontent.com/14079751/35878510-c7539eb0-0b78-11e8-9a5f-360202b1f912.jpg)
-
-<br>
-
-
-## Installation
-
-Please note that **this field requires Kirby 2.5.8+**. There is no backward compatibility since it makes use of custom modal events introduced with this release.
-
-Put the content of this repo in the `site/plugins` directory.  
-The plugin folder must be named `subtitler` :
-
-```
-|-- site/plugins/
-    |-- subtitler/
-        |-- fields/
-        |-- subtitler.php
-```
-
-## Blueprint usage
+- [1. Installation](#1-installation)
+- [2. Blueprint usage](#2-blueprint-usage)
+- [3. Options](#3-options)
+  * [3.1. Timelines](#31-timelines)
+  * [3.2. Display options](#32-display-options)
+  * [3.3. Storage options](#33-storage-options)
+- [4. Template usage](#4-template-usage)
+- [5. Crédits](#5-to-do)
+- [6. License](#6-license)
 
 
-When using this field, you'll need to set the audio or video file to use. This is done by specifying an (audio / video) field as ```src```.
+#### TLDR – Just get me started 👀
 
-Any field outputting a single filename can be used as a source (ie. the ```select``` field, ```quickselect```, etc.) :
+- [Blueprint example](#2-blueprint-usage)
+- [Template example](#4-template-usage)
 
-```yaml
-  videofile:
-    label: Video file the subtitler field will use
-    type: select
-    options: videos
-  subtitlerfield:
-    label: My synchronized content
-    type: subtitler
-    src: videofile
-    fields: 
-      start:
-        type: hidden
-      startprop:
-        type: hidden
-      end:
-        type: hidden
-      endprop:
-        type: hidden
-      customfield:
-        label: Content
-        type: text (or any kind of field)
-```
+<br/>
 
-### 3. Notes :
+## 1. Installation
 
-- This field uses a HTML5 player. It detects by itself whether it's an audio or a video file. Please use widely supported formats (ie. ```.mp3``` / ```.mp4```)
+Download and copy this repository to ```/site/plugins/subtitler```
 
-- The ```start```, ```startprop```, ```end``` and ```endprop``` fields **must be specified** within the subtitler fields. They currently cannot be renamed. They can be ```hidden``` or you can display them in ```readonly```mode :
+Alternatively, you can install it with composer: ```composer require sylvainjule/subtitler```
+
+<br/>
+
+## 2. Blueprint usage
+
+The subtitler is a section which doesn't store any information itself. 
+Instead, it provides an interface to manipulate content from other fields. Here's a basic setup of the plugin within your blueprint:
+
+#### 2.1. Example
 
 ```yaml
-fields: 
-  start:
-    label: Start time (seconds)
-    type: text
-    readonly: true
-  startprop:
-    label: Start time (progress)
-    type: text
-    readonly: true
-  end:
-    label: End time (seconds)
-    type: text
-    readonly: true
-  endprop:
-    label: End time (progress)
-    type: text
-    readonly: true
+columns:
+  - width: 2/3
+    sections:
+      subtitler:
+        type: subtitler
+        timelines:
+          mytimeline:
+            id: mytimeline
+            label: My timeline
+            color: purple
+        storage:
+          src: src
+          subs: subs
+
+  - width: 1/3
+    sections:
+      myfields:
+        type: fields
+        fields:
+          src:
+            type: files
+            max: 1
+          subs:
+            type: structure
+            fields:
+              note:
+                label: Note
+                type: text
 ```
 
-- **The structure entries can't be manually sorted**. The usual sorting option in the blueprint won't cut it either, entries are displayed depending on their starting time.
+#### 2.2. Usage within a file page
 
-- Due to the number of displayed buttons, I didn't intend for this field to be used on a mobile panel. Small screens might run into issues.
+Will have to test that.
 
-- This field isn't meant to deal with a tremendous amount of subtitles, rather a quick solution for synchronizing a few contents on the fly and allowing to directly link field / page objects. For extensive subtitle work, nothing beats a good old ```.srt``` editor.
+<br/>
 
-## Front-end usage
+## 3. Options
 
-The field can be dealt with as a regular structure field. Each entry will have a ```start```, ```startprop```, ```end``` and ```endprop``` value, formatted like this :
+### 3.1. Timelines
+
+This new version handles multiple timelines for a given video / audio file, instead of having to duplicate the field.
+Timelines have to be specified within the `timelines` option, an given 3 attributes :
+
+- An `id` (will be used to divide the structure entries)
+- A `label` (will be displayed within the editor)
+- A `color` (will be displayed within the editor, and have to be either `blue`, `green`, `red`, `orange`or `purple`)
+
+Here's an example with multiple timelines: 
 
 ```yaml
-start / end : 364.58745 #(number of seconds)
-startprop / endprop : 0.35 #(the progress relative to the file's duration, between 0 and 1)
+timelines:
+  chapters:
+    id: chapters
+    label: Chapters
+    color: purple
+  links:
+    id: links
+    label: Links
+    color: orange
+  images:
+    id: images
+    label: Images
+    color: blue
 ```
 
-Please note that in order to retrieve the same order than in the panel, you will need to make sure that the entries are sorted by their start time :
+### 3.2. Display options
 
-```php
-$page->subtitlerfield()->toStructure()->sortBy('start', 'asc');
+##### • Theme
+
+> type: `string`, default: `light`
+
+You have two themes available, a dark and a light one. (doesn't work for now, but you'll have them pretty soon)
+
+[Screenshot]
+
+##### • Debug
+
+> type: `boolean`, default: `false`
+
+When set to `true`, timecodes and coordinates based on cursor position will be shown in real-time in the toolbar. Not needed unless you're trying to extend some functionality.
+
+[Screenshot]
+
+
+### 3.3. Storage options
+
+##### • Audio / video file
+
+The section needs to be synced with a field returning a file object to work with. 
+Using a ```files``` field is required. Not only does it look nicer than a select field, but most importantly it returns both an absolute url and an id of the file:
+
+```yaml
+# subtitler section
+storage:
+  src: src
+
+# fields section
+src:
+  type: files
+  max: 1
 ```
 
-How to deal with those depends on your use case, but here is a generic way of passing the values as an array in a ```data-attribute``` :
+> Note: You don’t need to explicitly set a ```max``` value, though it may look clearer. When confronted to a files field containing multiple files, the plugin will always use the first one.
 
-```php
-<?php if($video = $page->videofile()->toFile()): 
-      $values = [];
-      foreach($page->subtitlerfield()->toStructure() as $entry) {
-          array_push($values, array('start' => $entry->start(), 'end' => $entry->end()));
-      } ?>
-    <video data-values="<?php echo htmlspecialchars(json_encode($values)); ?>">
-        <source src="<?php echo $video->url() ?>" type="<?php echo $video->mime() ?>">
-    </video>
-<?php endif; ?>
+##### • Subtitles structure
+
+The plugin needs an associated structure field to store the subtitles informations. It has 5 reserved fields that shouldn't be used for any other purpose: `timeline`, `start`, `startprop`,`end` and `endprop`. Those will be automatically set and don't need to be explicitely specified unless you want to show them within the panel:
+
+[Screenshot]
+
+```yaml
+# subtitler section
+storage:
+  subs: subs
+
+# fields section
+subs:
+  type: structure
+  fields:
+    timeline:
+      label: 'Timeline'
+      type: text
+    start:
+      label: 'Start'
+      type: text
+    startprop:
+      label: 'Start (%)'
+      type: text
+    end:
+      label: 'End'
+      type: text
+    endprop:
+      label: 'End (%)'
+      type: text
 ```
 
-And getting them on the other side :
+Otherwise, you can directly start adding fields you'd like to sync content with:
 
-```javascript
-var values = JSON.parse(videoElement.getAttribute('data-values'));
+[Screenshot]
+
+```yaml
+# subtitler section
+storage:
+  subs: subs
+
+# fields section
+subs:
+  type: structure
+  fields:
+    mynote:
+      label: 'Note'
+      type: text
 ```
 
-## Options
+<br/>
 
-### Structure field options
+## 4. Template usage
 
-The default structure field options **should** be available ( although many are not useful for the purpose of this field.
-I haven't tested all of them so issues may occur, please test carefully before using in production. Any help with debugging is welcome !  
+THis will be filled. There will probably be methods. A way to generate a srt file. Stuff like that.
 
+<br/>
 
-### Translate the buttons text
+## 5. To-do
 
-If your language is missing, you can easily translate the *empty state*, *reset* and *add* texts by adding it to ```fields/subtitler/translations/translations.php```.
+- [ ] Resizing subs
+- [ ] Clean this mess 💥
+- [ ] Hopefully [ease the type detection](https://github.com/k-next/kirby/issues/1082)
+- [ ] `addEventListeners` get fired too early
+- [ ] Update the duration
 
-## To do
+<br/>
 
-- [ ] Fix behaviour on newly added subtitles without reloading the page (the overlap isn't detected)
-- [ ] Allow custom colors
-- [ ] Try to restore the currentTime on AJAX reloads (```localStorage```?)
-
-## Credits
-
-The field translation's method is a copy-paste of the [kirby-images](https://github.com/medienbaecker/kirby-images)' one by [medienbaecker](https://github.com/medienbaecker).
-## License
+## 6. License
 
 MIT
