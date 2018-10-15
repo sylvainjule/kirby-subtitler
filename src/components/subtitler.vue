@@ -326,7 +326,6 @@ export default {
 
 			// Push at the right index
 			let index = this.getNewIndex()
-			console.log(index)
 			this.subs.splice(index, 0, sub)
 
 			// Update the structure and reset everything
