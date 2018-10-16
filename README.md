@@ -4,6 +4,8 @@ This plugin allows you to sync any content with audio or video files.
 
 ![subtitler-screenshot](https://user-images.githubusercontent.com/14079751/47035774-1ea34800-d17b-11e8-8463-cc4d959d8b29.jpg)
 
+<br/>
+
 ## Overview
 
 - [1. Installation](#1-installation)
@@ -213,13 +215,14 @@ subs:
 
 ## 4. Template usage
 
-This will be filled. There will probably be methods. A way to generate a srt file. Stuff like that.
+Coming soon.
 
 <br/>
 
 ## 5. To-do
 
-- [ ] Resizing subs
+- [ ] Make subs resizable
+- [ ] Work on template usage
 - [X] Write a proper README
 - [X] Add a `dark` theme
 - [X] Hopefully [ease the type detection](https://github.com/k-next/kirby/issues/1082)
