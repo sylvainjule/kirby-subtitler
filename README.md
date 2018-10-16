@@ -2,7 +2,7 @@
 
 This plugin allows you to sync any content with audio or video files.
 
-[screenshot here]
+![subtitler-screenshot](https://user-images.githubusercontent.com/14079751/47035774-1ea34800-d17b-11e8-8463-cc4d959d8b29.jpg)
 
 ## Overview
 
@@ -86,7 +86,7 @@ This should be set in a custom `panel.css`:
 
 #### 2.2. Usage within a file page
 
-Will have to test that.
+You can use this plugin within a file page by setting it like stated above, but skipping the `src` option within the `storage` settings. The plugin will automatically detect the image of the given page.
 
 <br/>
 
@@ -127,7 +127,7 @@ timelines:
 
 You have two themes available, a dark and a light one. (doesn't work for now, but you'll have them pretty soon)
 
-[Screenshot]
+![subtitler-themes](https://user-images.githubusercontent.com/14079751/47035580-adfc2b80-d17a-11e8-906b-07c22669de69.jpg)
 
 ##### • Debug
 
@@ -135,7 +135,7 @@ You have two themes available, a dark and a light one. (doesn't work for now, bu
 
 When set to `true`, timecodes and coordinates based on cursor position will be shown in real-time in the toolbar. Not needed unless you're trying to extend some functionality.
 
-[Screenshot]
+![subtitler-debug](https://user-images.githubusercontent.com/14079751/47035578-ad639500-d17a-11e8-8d4a-c61a72fbf584.jpg)
 
 
 ### 3.3. Storage options
@@ -162,7 +162,7 @@ src:
 
 The plugin needs an associated structure field to store the subtitles informations. It has 5 reserved fields that shouldn't be used for any other purpose: `timeline`, `start`, `startprop`,`end` and `endprop`. Those will be automatically set and don't need to be explicitely specified unless you want to show them within the panel:
 
-[Screenshot]
+![subtitler-fields](https://user-images.githubusercontent.com/14079751/47036031-d6d0f080-d17b-11e8-8efe-b8a0f2957930.jpg)
 
 ```yaml
 # subtitler section
@@ -192,7 +192,8 @@ subs:
 
 Otherwise, you can directly start adding fields you'd like to sync content with:
 
-[Screenshot]
+![subtitler-notes](https://user-images.githubusercontent.com/14079751/47036032-d6d0f080-d17b-11e8-839f-c47089b49d76.jpg)
+
 
 ```yaml
 # subtitler section
@@ -219,7 +220,7 @@ This will be filled. There will probably be methods. A way to generate a srt fil
 ## 5. To-do
 
 - [ ] Resizing subs
-- [ ] Write a proper README
+- [X] Write a proper README
 - [X] Add a `dark` theme
 - [X] Hopefully [ease the type detection](https://github.com/k-next/kirby/issues/1082)
 - [X] `addEventListeners` get fired too early
