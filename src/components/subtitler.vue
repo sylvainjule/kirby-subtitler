@@ -15,6 +15,7 @@
 				<div class="coord text">{{coords.text}}</div>
 			</div>
 		</div>
+
 		<div v-if="fileExists" :class="['subtitler-file', {'debug': debug}]">
 			<div v-if="isVideo" class="subtitler-video">
 				<div class="subtitler-video-ctn">
@@ -36,14 +37,14 @@
 		<div v-if="fileExists" class="subtitler-editor">
 			<div class="subtitler-editor-firstline">
 				<div class="left">
-					<div class="play" @click="playPause">
+					<button class="play" @click="playPause">
 						<play-icon v-if="!isPlaying" />
 						<pause-icon v-if="isPlaying" />
-					</div>
+					</button>
 					<div v-if="activeTimeline" class="range-buttons">
-						<div :class="['range-button start', {disabled: disableStart}, {active: startExists}]" @click="setStart">{</div>
+						<button :class="['range-button start', {disabled: disableStart}, {active: startExists}]" @click="setStart">{</button>
 						<arrow-icon v-if="startExists" />
-						<div v-if="startExists" :class="['range-button end', {disabled: disableEnd}]" class="range-button end" @click="setEnd">}</div>
+						<button v-if="startExists" :class="['range-button end', {disabled: disableEnd}]" class="range-button end" @click="setEnd">}</button>
 					</div>
 				</div>
 				<div ref="timeline" class="right">
@@ -85,8 +86,6 @@
 				</div>
 			</div>
 		</div>
-
-
 	</div>
 </template>
 

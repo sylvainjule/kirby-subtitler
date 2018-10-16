@@ -219,8 +219,6 @@ This will be filled. There will probably be methods. A way to generate a srt fil
 ## 5. To-do
 
 - [ ] Resizing subs
-- [ ] Clean this mess 💥
-- [ ] Ticks => radios, buttons should be buttons, etc.
 - [ ] Write a proper README
 - [X] Add a `dark` theme
 - [X] Hopefully [ease the type detection](https://github.com/k-next/kirby/issues/1082)
