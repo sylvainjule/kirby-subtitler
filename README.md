@@ -71,6 +71,18 @@ columns:
                 type: text
 ```
 
+Notice the `sortable: false` for the structure field, else the section will easily be lost with the incrementation.
+
+You should also ensure that the structure field will only contain subtitles. To do so, you can hide the `Add +` button of the field. This way, there will be no alternative to populate it other than the subtitler section.
+
+This should be set in a custom `panel.css`:
+
+```css
+.k-field-subs .k-field-header button {
+    display: none;
+}
+```
+
 #### 2.2. Usage within a file page
 
 Will have to test that.
@@ -207,14 +219,14 @@ This will be filled. There will probably be methods. A way to generate a srt fil
 
 - [ ] Resizing subs
 - [ ] Clean this mess 💥
-- [ ] Fix [L.373](https://github.com/sylvainjule/kirby-subtitler/blob/cfcb70901ab66acbcf9e813fcddd54cf841e4cf9/src/components/subtitler.vue#L373)
 - [ ] Ticks => radios, buttons should be buttons, etc.
 - [ ] Hopefully [ease the type detection](https://github.com/k-next/kirby/issues/1082)
 - [ ] `addEventListeners` get fired too early
 - [ ] Add a `dark` theme
 - [ ] Write a proper README
 - [ ] Suggest to disable sorting of the structure
-- [ ] CSS snippet to hide the structure `add` button
+- [X] CSS snippet to hide the structure `add` button
+- [X] Fix [L.373](https://github.com/sylvainjule/kirby-subtitler/blob/cfcb70901ab66acbcf9e813fcddd54cf841e4cf9/src/components/subtitler.vue#L373)
 - [X] Update the duration on file change
 
 <br/>
