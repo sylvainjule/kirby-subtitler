@@ -221,11 +221,11 @@ This will be filled. There will probably be methods. A way to generate a srt fil
 - [ ] Resizing subs
 - [ ] Clean this mess 💥
 - [ ] Ticks => radios, buttons should be buttons, etc.
-- [ ] Hopefully [ease the type detection](https://github.com/k-next/kirby/issues/1082)
-- [ ] `addEventListeners` get fired too early
-- [ ] Add a `dark` theme
 - [ ] Write a proper README
-- [ ] Suggest to disable sorting of the structure
+- [ ] Add a `dark` theme
+- [X] Hopefully [ease the type detection](https://github.com/k-next/kirby/issues/1082)
+- [X] `addEventListeners` get fired too early
+- [X] Suggest to disable sorting of the structure
 - [X] CSS snippet to hide the structure `add` button
 - [X] Fix [L.373](https://github.com/sylvainjule/kirby-subtitler/blob/cfcb70901ab66acbcf9e813fcddd54cf841e4cf9/src/components/subtitler.vue#L373)
 - [X] Update the duration on file change

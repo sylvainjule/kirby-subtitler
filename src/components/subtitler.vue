@@ -428,20 +428,6 @@ export default {
             let t = Math.floor(time)
             return (t-(t%=60))/60+(9<t?'\'':'\'0')+t
 		},
-		syncSrcType() {
-			let videoExt = ['avi', 'flv', 'm4v', 'mov', 'movie', 'mpe', 'mpg', 'mp4', 'ogg', 'ogv', 'swf', 'webm']
-			let audioExt = ['aif', 'aiff', 'm4a', 'midi', 'mp3', 'wav']
-			let ext      = this.src.url.split('.').pop()
-
-			if(videoExt.indexOf(ext) > -1) this.src.type = 'video'
-			if(audioExt.indexOf(ext) > -1) this.src.type = 'audio'
-
-			if(this.src.type && !this.loaded) {
-	        	this.$nextTick(() => {
-					this.init()
-				})
-	        }
-		},
 		setValue(fieldname, value) {
 	        try {
 		        for (let datapoint in this.storage) {
@@ -456,7 +442,6 @@ export default {
 			                    			url: value[0].url,
 			                    			type: value[0].type
 			                    		}
-			                    		if(!this.src.type) this.syncSrcType()
 			                    	}
 			                    	else {
 			                    		this.src = {
