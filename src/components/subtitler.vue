@@ -369,20 +369,18 @@ export default {
 	        		let nextTimelines = this.timelines.slice(this.timelines.indexOf(this.active) + 1)
 	        		if(nextTimelines) {
 	        			// if one of these next timelines has a sub
-	        			if(nextTimelines) {
-	        				let withSubs = nextTimelines.filter(timeline => {
-	        					return this.timelineSubs(timeline).length
-	        				})
-	        				if(withSubs.length) { 
-	        					let firstWithSubs = withSubs[0]
-	        					let firstNextSub  = this.timelineSubs(firstWithSubs)[0]
-	        					return this.subs.indexOf(firstNextSub)
-	        				}
-	        				// otherwise, it's the last item of the array
-	        				else {
-	        					return this.subs.length
-	        				}
-	        			}
+        				let withSubs = nextTimelines.filter(timeline => {
+        					return this.timelineSubs(timeline).length
+        				})
+        				if(withSubs.length) { 
+        					let firstWithSubs = withSubs[0]
+        					let firstNextSub  = this.timelineSubs(firstWithSubs)[0]
+        					return this.subs.indexOf(firstNextSub)
+        				}
+        				// otherwise, it's the last item of the array
+        				else {
+        					return this.subs.length
+        				}
 	        		}
 	        		//otherwise, it's the last item of the array
 		        	else {
