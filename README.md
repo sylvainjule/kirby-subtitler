@@ -65,6 +65,7 @@ columns:
             max: 1
           subs:
             type: structure
+            sortable: false
             fields:
               note:
                 label: Note
