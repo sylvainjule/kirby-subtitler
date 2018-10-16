@@ -11,7 +11,83 @@
 			background: lighten(#efefef, 5%);
 		}
 	}
+	.subtitler-toolbar-debug {
+		background: white;
+	}
+	.subtitler-editor {
+		&-firstline {
+			.left {
+                border-right: 1px solid #e5e5e5;
+                background: #f8f8f8;
+                .play {
+                    border-right: 1px solid #e5e5e5;
+                    svg {
+                        fill: lighten(#848484, 10%);
+                    }
+                    &:hover {
+                        svg {
+                            fill: black;
+                        }
+                    }
+                }
+                .range-buttons {
+                	.range-button {
+                        background: darken(#f2f2f2, 4%);
+                        color: darken(#919191, 5%);
+                	}
+                }
+			}
+			.right {
+                background: white;
+                color: lighten(#919191, 10%);
+			}
+		}
+		&-timelines {
+			.timeline {
+                border-top: 1px solid #e5e5e5;
+                .left {
+                    border-right: 1px solid #e5e5e5;
+                    .tick-wrapper {
+                    	.tick svg {
+                    		fill: white;
+                    	}
+                    }
+                    .count-wrapper {
+                    	.count {
+                            background: #f2f2f2;
+                            color: #919191;
+                    	}
+                    }
+                }
+                .right {
+                    background: #f8f8f8;
+                }
+
+                &.active {
+                    .right {
+                        background: repeating-linear-gradient(
+                            -45deg,
+                            #ffffff,
+                            #ffffff 5px,
+                            darken(#fafafa, 3%) 5px,
+                            darken(#fafafa, 3%) 6px
+                        );
+                    }
+                }
+                &:not(.active) {
+                    .tick { 
+                        border: 1px solid #b2b2b2;
+                        &:hover {
+                            border: 1px solid #2d2f36;
+                        }
+                    }
+                }
+
+			}
+		}
+	}
 }
+
 .subtitler[data-theme="dark"] {
 	.subtitler-background {
 		background: lighten($color-dark, 10%) url($pattern);
@@ -20,6 +96,105 @@
 		&-ctn {
 			background: $color-dark;
 			color: #c5c5c6;
+		}
+	}
+	.subtitler-toolbar-debug {
+		background: $color-dark;
+		color: white;
+	}
+	.subtitler-file {
+		.audio-icon {
+            svg path {
+            	&:first-child {
+            		fill: lighten($color-dark, 30%);
+            	}
+            	&:last-child {
+            		fill: $color-dark;
+            	}
+            }
+        }
+	}
+	.subtitler-editor {
+		&-firstline {
+			.left {
+                border-right: 1px solid lighten($color-dark, 25%);
+                background: lighten($color-dark, 10%);
+                .play {
+                    border-right: 1px solid lighten($color-dark, 25%);
+                    svg {
+                        fill: lighten($color-dark, 50%);
+                    }
+                    &:hover {
+                        svg {
+                            fill: white;
+                        }
+                    }
+                }
+                .range-buttons {
+                	.arrow {
+                		fill: darken($color-dark, 10%);
+                		opacity: 1;
+                	}
+                	.range-button {
+                        background: $color-dark;
+                        color: darken(#919191, 5%);
+                	}
+                }
+			}
+			.right {
+                background: $color-dark;
+                color: lighten($color-dark, 50%);
+			}
+		}
+		&-timelines {
+			.timeline {
+                border-top: 1px solid lighten($color-dark, 20%);
+                .left {
+                    border-right: 1px solid lighten($color-dark, 25%);
+                    background: $color-dark;
+                    color: lighten($color-dark, 50%);
+                    .tick-wrapper {
+                    	.tick svg {
+                    		fill: $color-dark;
+                    	}
+                    }
+                    .count-wrapper {
+                    	.count {
+                            background: lighten($color-dark, 10%);
+                            color: #919191;
+                    	}
+                    }
+                }
+                .right {
+                    background: lighten($color-dark, 10%);
+                }
+
+                &.active {
+                	.left {
+                		.tick-wrapper .tick svg {
+                			fill: white;
+                		}
+                	}
+                    .right {
+                        background: repeating-linear-gradient(
+                            -45deg,
+                            $color-dark,
+                            $color-dark 5px,
+                            lighten($color-dark, 3%) 5px,
+                            lighten($color-dark, 3%) 6px
+                        );
+                    }
+                }
+                &:not(.active) {
+                    .tick { 
+                        border: 1px solid lighten($color-dark, 30%);
+                        &:hover {
+                        	border: 1px solid #b2b2b2;
+                        }
+                    }
+                }
+
+			}
 		}
 	}
 }

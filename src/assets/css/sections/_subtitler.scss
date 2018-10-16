@@ -66,39 +66,28 @@
             display: flex;
             align-items: flex-end;
             .left {
-                border-right: 1px solid #e5e5e5;
                 display: flex;
                 align-items: center;
                 width: 200px;
                 padding-right: 10px;
                 font-size: 0.75rem;
-                background: #f8f8f8;
                 .play {
                     width: 38px;
                     height: 38px;
-                    //background: darken(#f2f2f2, 3%);
                     display: flex;
                     justify-content: center;
                     align-items: center;
                     cursor: pointer;
-                    border-right: 1px solid #e5e5e5;
                     svg {
                         width: 12px;
-                        fill: lighten(#848484, 10%);
                         transition: fill 0.2s ease-out;
                         opacity: 1;
-                    }
-                    &:hover {
-                        svg {
-                            fill: black;
-                        }
                     }
                 }
                 .range-buttons {
                     display: flex;
                     align-items: center;
                     margin-left: 12px;
-                    padding-top: 2px;
                     .arrow {
                         display: block;
                         width: 10px;
@@ -109,8 +98,6 @@
                         position: relative;
                         padding: 3px 8px 5px 8px;
                         border-radius: 4px;
-                        background: darken(#f2f2f2, 4%);
-                        color: darken(#919191, 5%);
                         font-weight: 600;
                         cursor: pointer;
                         &:first-child {
@@ -144,14 +131,12 @@
             .right {
                 width: calc(100% - 200px);
                 height: calc(100% - 3px);
-                background: white;
                 display: flex;
                 align-items: center;
                 justify-content: flex-end;
                 padding-top: 3px;
                 padding-right: 12px;
                 font-size: 0.75rem;
-                color: lighten(#919191, 10%);
             }
         }
         &-timelines {
@@ -160,10 +145,7 @@
                 height: 44px;
                 background: white;
                 display: flex;
-                border-top: 1px solid #e5e5e5;
-
                 .left {
-                    border-right: 1px solid #e5e5e5;
                     display: flex;
                     align-items: center;
                     width: 200px;
@@ -183,7 +165,6 @@
                             align-items: center;
                             cursor: pointer;
                             svg {
-                                fill: white;
                                 width: 8px;
                                 height: 8px;
                             }
@@ -201,14 +182,11 @@
                         .count {
                             padding: 2px 5px;
                             border-radius: 4px;
-                            background: #f2f2f2;
-                            color: #919191;
                         }
                     }
                 }
                 .right {
                     width: calc(100% - 200px);
-                    background: #f8f8f8;
                     display: flex;
                     align-items: center;
                     .subs {
@@ -235,17 +213,6 @@
                     }
                 }
 
-                &.active {
-                    .right {
-                        background: repeating-linear-gradient(
-                            -45deg,
-                            #ffffff,
-                            #ffffff 5px,
-                            darken(#fafafa, 3%) 5px,
-                            darken(#fafafa, 3%) 6px
-                        );
-                    }
-                }
                 &.inactive {
                     .left, .right {
                         > * {
@@ -262,11 +229,7 @@
                 }
                 &:not(.active) {
                     .tick { 
-                        border: 1px solid #b2b2b2;
                         transition: border 0.15s ease-out;
-                        &:hover {
-                            border: 1px solid #2d2f36;
-                        }
                     }
                 }
             }

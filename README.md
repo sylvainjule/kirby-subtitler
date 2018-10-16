@@ -222,7 +222,7 @@ This will be filled. There will probably be methods. A way to generate a srt fil
 - [ ] Clean this mess 💥
 - [ ] Ticks => radios, buttons should be buttons, etc.
 - [ ] Write a proper README
-- [ ] Add a `dark` theme
+- [X] Add a `dark` theme
 - [X] Hopefully [ease the type detection](https://github.com/k-next/kirby/issues/1082)
 - [X] `addEventListeners` get fired too early
 - [X] Suggest to disable sorting of the structure
