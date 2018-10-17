@@ -223,6 +223,13 @@ Coming soon.
 
 - [ ] Make subs resizable
 - [ ] Work on template usage
+- [ ] add a `getTimeline('timeline')` method, which would be a `toStructure()` wrapper filtering the subs  
+  - [ ] add a `toPercent()` method
+  - [ ] add a `sToSrt()` method
+  - [ ] add a field generating .vtt for all the timelines, in the page folder, `${fieldname}-${timeline}.vtt`
+  - [ ] add a field generating .srt for all the timelines, in the page folder, `${fieldname}-${timeline}.srt`
+  - [ ] add a `->srt('timeline')` method to get the srt file object
+  - [ ] add a `->vtt('timeline')` method to get the srt file object
 - [X] Write a proper README
 - [X] Add a `dark` theme
 - [X] Hopefully [ease the type detection](https://github.com/k-next/kirby/issues/1082)
