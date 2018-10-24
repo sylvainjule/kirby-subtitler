@@ -15,7 +15,7 @@ This plugin allows you to sync any content with audio or video files.
   * [3.2. Display options](#32-display-options)
   * [3.3. Storage options](#33-storage-options)
 - [4. Template usage](#4-template-usage)
-- [5. Crédits](#5-to-do)
+- [5. To-do](#5-to-do)
 - [6. License](#6-license)
 - [7. Crédits](#7-credits)
 
