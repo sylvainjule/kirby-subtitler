@@ -16,5 +16,9 @@ return array(
     },
     'toVttTime' => function($field) {
     	return Subtitler::toVttTime($field->value);
+    },
+    'vtt' => function($field, $timeline) {
+    	$filename = $field->key() . '-' . $timeline . '.vtt';
+    	return $field->parent()->file($filename);
     }
 );

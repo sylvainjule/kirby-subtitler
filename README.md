@@ -226,8 +226,8 @@ Coming soon.
   - [X] add a `getTimeline('timeline')` method, which would be a `toStructure()` wrapper filtering the subs  
   - [X] add a `toPercent()` method
   - [X] add a `toVttTime()` method
-  - [ ] add a field generating .vtt for all the timelines, in the page folder, `${fieldname}-${timeline}.vtt`
-  - [ ] add a `->vtt('timeline')` method to get the srt file object
+  - [X] add a field generating .vtt for all the timelines, in the page folder, `${fieldname}-${timeline}.vtt`
+  - [X] add a `->vtt('timeline')` method to get the srt file object
   - [ ] add documentation for template usage
 - [X] Write a proper README
 - [X] Add a `dark` theme

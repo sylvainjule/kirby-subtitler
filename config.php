@@ -3,45 +3,10 @@
 require_once __DIR__ . '/lib/subtitler.php';
 
 Kirby::plugin('sylvainjule/subtitler', array(
-	'sections' => array(
-        'subtitler' => array(
-        	'props' => array(
-        		'debug' => function($debug = false) {
-        			return $debug;
-        		},
-        		'theme' => function($theme = 'light') {
-        			return $theme;
-        		},
-        		'timelines' => function($timelines = []) {
-        			$orderedTimelines = array();
-        			foreach($timelines as $timeline) {
-        				$data = array(
-        					'id' => $timeline['id'],
-        					'label' => $timeline['label'],
-        					'color' => $timeline['color'],
-        				);
-        				array_push($orderedTimelines, $data);
-        			}
-        			return $orderedTimelines;
-        		},
-        		'storage' => function($storage = []) {
-                    return $storage;
-                },
-        	),
-        	'computed' => array(
-                'file' => function() {
-                    if (in_array($this->model()->type(), ['audio', 'video'])) {
-                        return array(
-                        	'url' => $this->model()->url(),
-                        	'type' => $this->model()->type(),
-                        );
-                    }
-                    else {
-                        return false;
-                    }
-                }
-            ),
-        ),
-    ),
+    'sections'     => require_once __DIR__ . DS . 'lib' . DS . 'sections.php',
+    'fields'       => require_once __DIR__ . DS . 'lib' . DS . 'fields.php',
     'fieldMethods' => require_once __DIR__ . DS . 'lib' . DS . 'fieldMethods.php',
+    'api' => array(
+    	'routes' => require_once __DIR__ . '/lib/routes.php',
+    ),
 ));
