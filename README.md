@@ -343,24 +343,3 @@ MIT
 ## 6. Credits
 
 - The fields synchronization has been taken from [@rasteiner](https://github.com/rasteiner/kn-map-section)'s map section. 🙏
-
-<br/>
-
-## 7. To-do
-
-- [X] Make subs resizable
-- [X] Work on template usage
-  - [X] add a `getTimeline('timeline')` method, which would be a `toStructure()` wrapper filtering the subs  
-  - [X] add a `toPercent()` method
-  - [X] add a `toVttTime()` method
-  - [X] add a field generating .vtt for all the timelines, in the page folder, `${fieldname}-${timeline}.vtt`
-  - [X] add a `->vtt('timeline')` method to get the srt file object
-  - [X] add documentation for template usage
-- [X] Write a proper README
-- [X] Add a `dark` theme
-- [X] Hopefully [ease the type detection](https://github.com/k-next/kirby/issues/1082)
-- [X] `addEventListeners` get fired too early
-- [X] Suggest to disable sorting of the structure
-- [X] CSS snippet to hide the structure `add` button
-- [X] Fix [L.373](https://github.com/sylvainjule/kirby-subtitler/blob/cfcb70901ab66acbcf9e813fcddd54cf841e4cf9/src/components/subtitler.vue#L373)
-- [X] Update the duration on file change
