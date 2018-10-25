@@ -65,7 +65,9 @@
 					<div class="right">
 						<div class="subs">
 							<div v-for="(sub, index) in timelineSubs(timeline)" class="sub" :style="'left:'+ sub.startprop * 100 +'%; width:'+ (sub.endprop - sub.startprop) * 100 +'%;'">
-								<div class="index">{{subs.indexOf(sub) + 1}}</div>
+								<div class="sub-handle sub-handle-left" @mousedown="initResize(sub, 'left')"></div>
+								<div class="sub-index">{{subs.indexOf(sub) + 1}}</div>
+								<div class="sub-handle sub-handle-right" @mousedown="initResize(sub, 'right')"></div>
 							</div>
 						</div>
 					</div>
@@ -104,6 +106,13 @@ export default {
 				id: '',
 				type: '',
 				url: '',
+			},
+			resize: {
+				isResizing: false,
+				handle: String,
+				index: Number,
+				max: Number,
+				min: Number,
 			},
 			loaded: false,
 			isPlaying: false,
@@ -204,7 +213,7 @@ export default {
 			return this.currentTime.time <= this.start.time
 		},
 		isAfterNextSub: function() {
-			let nextSub = this.getNextSub()
+			let nextSub = this.getNextSub(this.start.prop)
 
 			if(nextSub) { return this.currentTime.prop >= nextSub.startprop }
 			else { return false }
@@ -226,9 +235,12 @@ export default {
 
 				this.$subtitler.registerSubtitler(this)
 	        })
+
+	    document.addEventListener('mouseup', this.stopResizing)
 	},
 	destroyed() {
 	    this.$subtitler.unregisterSubtitler(this)
+	    document.removeEventListener('mouseup', this.stopResizing)
 	},
 	methods: {
 		init() {
@@ -276,8 +288,55 @@ export default {
   			    x    = Math.max(0, Math.min(1, x.toFixed(4)))
 
 			this.coords.prop = x
-			this.coords.time = (x * this.duration.time).toFixed(2)
+			this.coords.time = x * this.duration.time
 			this.coords.text = this.formatTime(this.coords.time)
+
+			if(this.resize.isResizing) this.resizeSub(e)
+		},
+		initResize(sub, handle) {
+			if(!this.active) return false
+
+			this.resize.index        = this.subs.indexOf(sub)
+			this.resize.isResizing   = true
+			this.resize.handle       = handle
+
+			if (handle == 'left') {
+				let prevSub = this.getPrevSub(parseFloat(sub.startprop))
+
+				this.resize.min = prevSub ? parseFloat(prevSub.endprop) + 0.0001 : 0
+				this.resize.max = parseFloat(sub.endprop) - 0.0001
+			}
+			else if (handle == 'right') {
+				let nextSub = this.getNextSub(parseFloat(sub.startprop))
+
+				this.resize.min = parseFloat(sub.startprop) + 0.0001
+				this.resize.max = nextSub ? parseFloat(nextSub.startprop) - 0.0001 : 1
+			}
+		},
+		resizeSub(e) {
+			let _sub = this.subs[this.resize.index]
+
+			if(this.resize.handle == 'left') {
+				let newStart = Math.min(this.resize.max, Math.max(this.resize.min, this.coords.prop))
+				_sub.startprop = newStart
+				_sub.start     = newStart * this.duration.time
+			}
+			if(this.resize.handle == 'right') {
+				let newEnd = Math.min(this.resize.max, Math.max(this.resize.min, this.coords.prop))
+				_sub.endprop = newEnd
+				_sub.end     = newEnd * this.duration.time
+			}
+		},
+		stopResizing(e) {
+			if (!this.resize.isResizing) return false
+
+			this.updateStructure()
+
+			this.resize.isResizing = false
+			this.resize.handle = String
+			this.resize.index = Number
+			this.resize.max = Number
+			this.resize.min = Number
 		},
         onHandleMouseDown(e) {
             document.addEventListener('mousemove', this.onDocumentMouseMove)
@@ -293,8 +352,8 @@ export default {
             this.syncProgress(e)
         },
         syncProgress(e) {
-	        this.currentTime.prop = this.coords.prop
-			this.currentTime.time = (this.coords.prop * this.duration.time).toFixed(2)
+	        this.currentTime.prop = this.coords.prop.toFixed(4)
+			this.currentTime.time = this.coords.prop * this.duration.time
 			this.currentTime.text = this.formatTime(this.coords.time)
 			this.currentPlayer.currentTime = this.currentTime.time
         },
@@ -332,11 +391,11 @@ export default {
 			this.resetStart()
 			this.resetEnd()
         },
-        getNextSub() {
-        	return this.timelineSubs(this.active).find(sub => { return sub.startprop >= this.start.prop })
+        getNextSub(xref) {
+        	return this.timelineSubs(this.active).find(sub => { return sub.startprop > xref })
         },
-        getPrevSub() {
-        	return this.timelineSubs(this.active).splice(0).reverse().find(sub => { return this.start.prop > sub.endprop })
+        getPrevSub(xref) {
+        	return this.timelineSubs(this.active).splice(0).reverse().find(sub => { return xref > sub.endprop })
         },
         getNewIndex() {
         	// if there's no sub
@@ -344,14 +403,14 @@ export default {
         		
         	// if there's at least one other sub in the timeline
         	if(this.timelineSubs(this.active).length) {
-	        	let nextSub = this.getNextSub()
+	        	let nextSub = this.getNextSub(this.start.prop)
 	        	// if there's a next sub, just grab its index
 	        	if(nextSub) {
 	        		return this.subs.indexOf(nextSub)
 	        	}
 	        	// otherwise, increment the one of the previous sub
 	        	else {
-	        		let prevSub = this.getPrevSub()
+	        		let prevSub = this.getPrevSub(this.start.prop)
 	        		return this.subs.indexOf(prevSub) + 1
 	        	}
 	        }
@@ -405,7 +464,7 @@ export default {
 		},
 		syncCurrentTime(currentTime) {
 			this.currentTime.time = currentTime
-            this.currentTime.prop = currentTime / this.duration.time
+            this.currentTime.prop = (currentTime / this.duration.time).toFixed(4)
             this.currentTime.text = this.formatTime(currentTime)
 		},
 		setActive(timeline) {
@@ -463,14 +522,7 @@ export default {
 			                    	console.warn('could not adapt field to markers datapoint, not an array: ', value)
 			                    	break
 			                    }
-				                this.subs = value.map(entry => ({
-				                    timeline: entry.timeline,
-									start: entry.start,
-									startprop: entry.startprop,
-									end: entry.end,
-									endprop: entry.endprop,
-				                }))
-
+				                this.subs = value
 			                	break
 			                default:
 			                	this[datapoint] = value

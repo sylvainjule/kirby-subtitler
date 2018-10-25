@@ -29,10 +29,11 @@ Vue.prototype.$subtitler = new Vue({
 	            	if (!type) return
 
 		            switch(datapoint) {
-		              	case 'sub':
+		              	case 'subs':
 		                	//is this field structure like?
 		                	let fields = section.fields[fieldname].fields
 		                	if(fields) {
+		                		let target = section.values[fieldname]
 		                    	section.values[fieldname] = value.map((item) => {
 			                    	item = Object.assign({}, item)
 			                    	return item

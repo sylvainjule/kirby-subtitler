@@ -140,10 +140,25 @@
                         top: 0;
                         height: 100%;
                         border-radius: 4px;
-                        padding: 3px 5px;
                         font-size: 0.75rem;
-                        &:nth-child(2) {
-                            left: 120px;
+                        &-index {
+							position: absolute;
+							top: 3px;
+							left: 5px;
+                        }
+                        &-handle {
+                        	position: absolute;
+                        	top: 0;
+                        	left: 0;
+                        	width: 2px;
+                        	height: 100%;
+                        	pointer-events: none;
+                        	&-left {
+                        		left: -1px;
+                        	}
+                        	&-right {
+                        		left: calc(100% - 1px);
+                        	}
                         }
                     }
                 }
@@ -153,6 +168,17 @@
                 > * {
                     transition: opacity 0.2s ease-out;
                 }
+            }
+
+            &.active {
+            	.right {
+            		.subs {
+		            	.sub-handle {
+		            		cursor: ew-resize;
+		            		pointer-events: auto;
+		            	}
+            		}
+            	}
             }
 
             &.inactive {

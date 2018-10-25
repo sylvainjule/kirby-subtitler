@@ -348,7 +348,7 @@ MIT
 
 ## 7. To-do
 
-- [ ] Make subs resizable
+- [X] Make subs resizable
 - [X] Work on template usage
   - [X] add a `getTimeline('timeline')` method, which would be a `toStructure()` wrapper filtering the subs  
   - [X] add a `toPercent()` method

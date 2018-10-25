@@ -24,6 +24,7 @@
 			&.time {
 				width: 100px;
 				padding-left: 0;
+				@include text-truncate;
 				&:before {
 					content: 'time: ';
 				}
