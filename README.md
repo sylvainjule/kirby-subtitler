@@ -223,9 +223,9 @@ Coming soon.
 
 - [ ] Make subs resizable
 - [ ] Work on template usage
-  - [ ] add a `getTimeline('timeline')` method, which would be a `toStructure()` wrapper filtering the subs  
-  - [ ] add a `toPercent()` method
-  - [ ] add a `sToSrt()` method
+  - [X] add a `getTimeline('timeline')` method, which would be a `toStructure()` wrapper filtering the subs  
+  - [X] add a `toPercent()` method
+  - [X] add a `toSrtTime()` method
   - [ ] add a field generating .vtt for all the timelines, in the page folder, `${fieldname}-${timeline}.vtt`
   - [ ] add a field generating .srt for all the timelines, in the page folder, `${fieldname}-${timeline}.srt`
   - [ ] add a `->srt('timeline')` method to get the srt file object

@@ -1,5 +1,7 @@
 <?php 
 
+require_once __DIR__ . '/lib/subtitler.php';
+
 Kirby::plugin('sylvainjule/subtitler', array(
 	'sections' => array(
         'subtitler' => array(
