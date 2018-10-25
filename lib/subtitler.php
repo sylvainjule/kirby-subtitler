@@ -5,7 +5,7 @@ class Subtitler {
 	// seconds to hours:minutes:seconds,milliseconds
 	public static function toVttTime($seconds) {
 	    $hours = 0;
-	    $milliseconds = str_replace('0.', '', $seconds - floor($seconds));
+	    $milliseconds = str_replace('0.', '', number_format($seconds - floor($seconds), 3));
 
 	  	if ($seconds > 3600) {
 	    	$hours = floor($seconds / 3600);
