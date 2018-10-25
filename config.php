@@ -41,4 +41,5 @@ Kirby::plugin('sylvainjule/subtitler', array(
             ),
         ),
     ),
+    'fieldMethods' => require_once __DIR__ . DS . 'lib' . DS . 'fieldMethods.php',
 ));
