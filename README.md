@@ -215,20 +215,132 @@ subs:
 
 ## 4. Template usage
 
-Coming soon.
+There are different ways to use the subtitles, depending on your use case. You could, for example, send them as `json` to a Javascript app. Or, you could make use of some simple helpers shipped with the plugin to use them directly in your templates:
+
+### 4.1. How are the informations stored?
+
+Each entry will have a `start`, `startprop`, `end` and `endprop` value, formatted like this:
+
+```yaml
+start / end : 364.58745  # (number of seconds)
+startprop / endprop : 0.35  # (the progress relative to the file's duration, between 0 and 1)
+// + all your custom field
+```
+
+### 4.2. Create a subtitles collections
+
+Subtitles are stored in a structure field. 
+If you have a single timeline, you can create a collection with the ```toStructure()``` method to access them:
+
+```php
+foreach($page->mysubtitles()->toStructure() as $subtitle) {
+    // do something
+}
+```
+
+When dealing with multiple timelines, you either need to filter them manually or call the `getTimeline` method, which is a `toStructure` wrapper providing filtering by timeline. Use it this way:
+
+```php
+foreach($page->mysubtitles()->getTimeline('timelinekey') as $subtitle) {
+    // do something
+}
+```
+
+### 4.3. Track files helpers
+
+
+##### • Creating the tracks
+
+The plugin provides a simple way to generate [WebVTT files](https://developer.mozilla.org/en-US/docs/Web/API/WebVTT_API), which can later be added in your html `<track>` tags. 
+
+First, make sure that the field used to get the subtitles' content is called `subtitle`, else the plugin won't know where to look for the text:
+
+```
+subs:
+  label: Subtitles
+  type: structure
+  fields:
+    subtitle:
+      label: Content
+      type: text
+```
+
+Then, include the `tracksbuilder` field on your page, which is basically a button generating the `.vtt` files on request (stored in the page's folder).
+
+```yaml
+mytracks:
+  label: Generate tracks
+  type: tracksbuilder
+  src: subs # (key of the structure field containing the subtitles)
+```
+
+The output will look like:
+
+```yaml
+# if single language
+${fieldname}-${timeline}.vtt # (content/my/page/subs-notes.vtt)
+
+# if multi-language
+${fieldname}-${timeline}-${languageCode}.vtt # (content/my/page/subs-notes-en.vtt)
+```
+
+You are now able to get them easily by calling `->vtt('timeline')` on the subtitles structure field (example below).
+
+
+##### • Single language setup
+
+Once your `.vtt` files have been created, you can [include them](https://developer.mozilla.org/en-US/docs/Web/Apps/Fundamentals/Audio_and_video_delivery/Adding_captions_and_subtitles_to_HTML5_video) in your `video` tag.
+Here is a basic example, using a timeline called `notes`:
+
+```php
+// we make sure the video file exists
+<?php if($video = $page->src()->toFile()): ?>
+<video id="video" controls preload="metadata">
+   <source src="<?php echo $video->url() ?>" type="<?php echo $video->mime() ?>">
+
+   // we make sure the .vtt file exists
+   <?php if($track = $page->subs()->vtt('notes')): ?>
+   <track label="English" kind="subtitles" srclang="en" src="<?php echo $track->url() ?>" default>
+   <?php endif; ?>
+</video>
+<?php endif; ?>
+
+```
+
+##### • Multi-language setup
+
+Multi-language setup is pretty much the same, except we need to put the `track` tag within a loop and set the desired languages explicitely:
+
+```php
+// we make sure the video file exists
+<?php if($video = $page->src()->toFile()): ?>
+<video id="video" controls preload="metadata">
+    <source src="<?php echo $video->url() ?>" type="<?php echo $video->mime() ?>">
+
+    // we loop through every language
+    <?php foreach($kirby->languages() as $language): ?>
+        // we make sure the .vtt file exists
+        <?php if($track = $page->subs()->vtt('notes', $language->code())): ?>
+        <track label="<?php echo $language->name() ?>" kind="subtitles" srclang="<?php echo $language->code() ?>" src="<?php echo $track->url() ?>" default>
+        <?php endif; ?>
+    <?php endforeach; ?>
+</video>
+<?php endif; ?>
+
+```
 
 <br/>
 
 ## 5. To-do
 
 - [ ] Make subs resizable
-- [ ] Work on template usage
+- [X] Work on template usage
   - [X] add a `getTimeline('timeline')` method, which would be a `toStructure()` wrapper filtering the subs  
   - [X] add a `toPercent()` method
   - [X] add a `toVttTime()` method
   - [X] add a field generating .vtt for all the timelines, in the page folder, `${fieldname}-${timeline}.vtt`
   - [X] add a `->vtt('timeline')` method to get the srt file object
-  - [ ] add documentation for template usage
+  - [X] add documentation for template usage
 - [X] Write a proper README
 - [X] Add a `dark` theme
 - [X] Hopefully [ease the type detection](https://github.com/k-next/kirby/issues/1082)
