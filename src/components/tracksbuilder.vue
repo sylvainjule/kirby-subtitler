@@ -1,6 +1,6 @@
 <template>
     <k-field v-bind="$attrs">
-    	<div :class="['vttcreator-button', {error: hasError}, {processing: processing}, {success: success}]" @click="generateVttFiles">
+    	<div :class="['tracksbuilder-button', {error: hasError}, {processing: processing}, {success: success}]" @click="generateVttFiles">
 			<span class="icon">
 				<svg viewBox="0 0 16 16">
 			        <use xlink:href="#icon-refresh" />
@@ -76,5 +76,5 @@ export default {
 </script>
 
 <style lang="scss">
-	@import '../assets/css/fields/vttcreator.scss'
+	@import '../assets/css/fields/tracksbuilder.scss'
 </style>

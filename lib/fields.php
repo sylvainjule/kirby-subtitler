@@ -1,7 +1,7 @@
 <?php
 
 return array(
-    'vttcreator' => array(
+    'tracksbuilder' => array(
     	'props' => array(
         	'src' => function($src = false) {
         		return $src;

@@ -1,5 +1,5 @@
 import Subtitler from './components/subtitler.vue'
-import VttCreator from './components/vttcreator.vue'
+import tracksBuilder from './components/tracksbuilder.vue'
 import Coordinator from './helpers/coordinator.js'
 
 panel.plugin('sylvainjule/subtitler', {
@@ -8,6 +8,6 @@ panel.plugin('sylvainjule/subtitler', {
         subtitler: Subtitler
     },
     fields: {
-        vttcreator: VttCreator
+        tracksbuilder: tracksBuilder
     }
 });
