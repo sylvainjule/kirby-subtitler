@@ -248,8 +248,7 @@ foreach($page->mysubtitles()->getTimeline('timelinekey') as $subtitle) {
 
 ### 4.3. Track files helpers
 
-
-##### • Creating the tracks
+#### • Creating the tracks
 
 The plugin provides a simple way to generate [WebVTT files](https://developer.mozilla.org/en-US/docs/Web/API/WebVTT_API), which can later be added in your html `<track>` tags. 
 
@@ -287,7 +286,7 @@ ${fieldname}-${timeline}-${languageCode}.vtt # (content/my/page/subs-notes-en.vt
 You are now able to get them easily by calling `->vtt('timeline')` on the subtitles structure field (example below).
 
 
-##### • Single language setup
+#### • Single language setup
 
 Once your `.vtt` files have been created, you can [include them](https://developer.mozilla.org/en-US/docs/Web/Apps/Fundamentals/Audio_and_video_delivery/Adding_captions_and_subtitles_to_HTML5_video) in your `video` tag.
 Here is a basic example, using a timeline called `notes`:
@@ -307,7 +306,7 @@ Here is a basic example, using a timeline called `notes`:
 
 ```
 
-##### • Multi-language setup
+#### • Multi-language setup
 
 Multi-language setup is pretty much the same, except we need to put the `track` tag within a loop and set the desired languages explicitely:
 
