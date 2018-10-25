@@ -14,7 +14,7 @@ return array(
     'toPercentString' => function($field) {
     	return floatval($field->value) * 100 . '%';
     },
-    'toSrtTime' => function($field) {
-    	return Subtitler::toSrtTime($field->value);
+    'toVttTime' => function($field) {
+    	return Subtitler::toVttTime($field->value);
     }
 );

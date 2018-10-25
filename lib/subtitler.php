@@ -3,7 +3,7 @@
 class Subtitler {
 
 	// seconds to hours:minutes:seconds,milliseconds
-	public static function toSrtTime($seconds) {
+	public static function toVttTime($seconds) {
 	    $hours = 0;
 	    $milliseconds = str_replace('0.', '', $seconds - floor($seconds));
 
