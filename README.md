@@ -15,9 +15,11 @@ This plugin allows you to sync any content with audio or video files.
   * [3.2. Display options](#32-display-options)
   * [3.3. Storage options](#33-storage-options)
 - [4. Template usage](#4-template-usage)
-- [5. To-do](#5-to-do)
-- [6. License](#6-license)
-- [7. Crédits](#7-credits)
+  * [4.1. How are the informations stored?](#41-how-are-the-informations-stored)
+  * [4.2. Create a subtitles collections](#42-create-a-subtitles-collection)
+  * [4.3. Generate and use a track file](#43-generate-and-use-a-track-file)
+- [5. License](#5-license)
+- [6. Credits](#6-credits)
 
 
 #### TLDR – Just get me started 👀
@@ -246,7 +248,7 @@ foreach($page->mysubtitles()->getTimeline('timelinekey') as $subtitle) {
 }
 ```
 
-### 4.3. Track files helpers
+### 4.3. Generate and use a track file
 
 #### • Creating the tracks
 
@@ -332,7 +334,19 @@ Multi-language setup is pretty much the same, except we need to put the `track` 
 
 <br/>
 
-## 5. To-do
+## 5. License
+
+MIT
+
+<br/>
+
+## 6. Credits
+
+- The fields synchronization has been taken from [@rasteiner](https://github.com/rasteiner/kn-map-section)'s map section. 🙏
+
+<br/>
+
+## 7. To-do
 
 - [ ] Make subs resizable
 - [X] Work on template usage
@@ -350,15 +364,3 @@ Multi-language setup is pretty much the same, except we need to put the `track` 
 - [X] CSS snippet to hide the structure `add` button
 - [X] Fix [L.373](https://github.com/sylvainjule/kirby-subtitler/blob/cfcb70901ab66acbcf9e813fcddd54cf841e4cf9/src/components/subtitler.vue#L373)
 - [X] Update the duration on file change
-
-<br/>
-
-## 6. License
-
-MIT
-
-<br/>
-
-## 7. Credits
-
-- The fields synchronization has been taken from [@rasteiner](https://github.com/rasteiner/kn-map-section)'s map section. 🙏
