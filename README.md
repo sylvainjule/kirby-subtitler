@@ -25,7 +25,7 @@ This plugin allows you to sync any content with audio or video files.
 #### TLDR – Just get me started 👀
 
 - [Blueprint example](#2-blueprint-usage)
-- [Template example](#4-template-usage)
+- [Template example](#single-language-setup)
 
 <br/>
 
