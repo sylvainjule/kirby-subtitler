@@ -294,12 +294,12 @@ Once your `.vtt` files have been created, you can [include them](https://develop
 Here is a basic example, using a timeline called `notes`:
 
 ```php
-<?php // we make sure the video file exists
+<?php // we make sure that the video file exists
       if($video = $page->src()->toFile()): ?>
 <video id="video" controls preload="metadata">
    <source src="<?php echo $video->url() ?>" type="<?php echo $video->mime() ?>">
    
-   <?php // we make sure the .vtt file exists
+   <?php // we make sure that the .vtt file exists
          if($track = $page->subs()->vtt('notes')): ?>
    <track label="English" kind="subtitles" srclang="en" src="<?php echo $track->url() ?>" default>
    <?php endif; ?>
@@ -314,15 +314,14 @@ Multi-language setup is pretty much the same, except we need to put the `track` 
 
 ```php
 
-<?php // we make sure the video file exists
+<?php // we make sure that the video file exists
       if($video = $page->src()->toFile()): ?>
 <video id="video" controls preload="metadata">
     <source src="<?php echo $video->url() ?>" type="<?php echo $video->mime() ?>">
-
     
     <?php // we loop through every language
           foreach($kirby->languages() as $language): ?>
-        <?php // we make sure the .vtt file exists
+        <?php // we make sure that the .vtt file exists
               if($track = $page->subs()->vtt('notes', $language->code())): ?>
         <track label="<?php echo $language->name() ?>" kind="subtitles" srclang="<?php echo $language->code() ?>" src="<?php echo $track->url() ?>" default>
         <?php endif; ?>

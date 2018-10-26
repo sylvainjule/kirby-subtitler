@@ -32,11 +32,11 @@ export default {
 	},
 	computed: {
 		text() {
-			if(this.hasError) return 'An error occured, please check your logs.'
+			if(this.hasError) return 'An error occured!'
 			if(this.success) {
-				return this.vttLength ? 'Your .vtt files have been successfully updated.' : 'Your .vtt files have been successfully created.'
+				return this.vttLength ? 'Files updated!' : 'Files created!'
 			}
-			if(this.processing) return 'Your tracks are being generated.'
+			if(this.processing) return 'Processing...'
 			return this.vttLength ? 'Update .vtt files' : 'Create .vtt files'
 		}
 	},
