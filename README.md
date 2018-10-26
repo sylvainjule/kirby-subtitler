@@ -226,7 +226,7 @@ Each entry will have a `start`, `startprop`, `end` and `endprop` value, formatte
 ```yaml
 start / end : 364.58745  # (number of seconds)
 startprop / endprop : 0.35  # (the progress relative to the file's duration, between 0 and 1)
-// + all your custom field
+# + all your custom field
 ```
 
 ### 4.2. Create a subtitles collections
