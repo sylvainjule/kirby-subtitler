@@ -57,7 +57,7 @@
 						<div class="tick-wrapper">
 							<div class="tick" @click="setActive(timeline)"><edit-icon /></div>
 						</div>
-						<div class="name">{{timeline.label}}</div>
+						<div class="name">{{label(timeline)}}</div>
 						<div class="count-wrapper">
 							<div class="count">{{timelineSubs(timeline).length}}</div>
 						</div>
@@ -228,6 +228,7 @@ export default {
 	        	this.storage   = response.storage
 	        	this.timelines = response.timelines
 	        	this.storage   = response.storage
+	        	this.lang      = response.lang
 	        	if(response.file) {
 	        		this.src.url  = response.file.url
 	        		this.src.type = response.file.type
@@ -545,6 +546,12 @@ export default {
 	        	this.$subtitler.updateFields('subs', this.storage.subs, this.subs)
 	        }
 	    },
+	    isObject(obj) {
+		    return obj === Object(obj);
+		},
+		label(timeline) {
+			return this.isObject(timeline.label) ? timeline.label[this.lang] : timeline.label
+		}
 	},
 }
 </script>

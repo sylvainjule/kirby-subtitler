@@ -32,12 +32,10 @@ export default {
 	},
 	computed: {
 		text() {
-			if(this.hasError) return 'An error occured!'
-			if(this.success) {
-				return this.vttLength ? 'Files updated!' : 'Files created!'
-			}
-			if(this.processing) return 'Processing...'
-			return this.vttLength ? 'Update .vtt files' : 'Create .vtt files'
+			if(this.hasError) return this.$t('subtitler.vttbuilder.error')
+			if(this.success) return this.vttLength ? this.$t('subtitler.vttbuilder.updated') : this.$t('subtitler.vttbuilder.created')
+			if(this.processing) return this.$t('subtitler.vttbuilder.processing')
+			return this.vttLength ? this.$t('subtitler.vttbuilder.update') : this.$t('subtitler.vttbuilder.create')
 		}
 	},
 	methods: {

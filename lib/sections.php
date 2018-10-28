@@ -36,6 +36,9 @@ return array(
                 else {
                     return false;
                 }
+            },
+            'lang' => function() {
+            	return kirby()->languageCode() ?? false;
             }
         ),
     ),

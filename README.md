@@ -123,6 +123,18 @@ timelines:
     color: blue
 ```
 
+Labels also support multi-language syntax: 
+
+```yaml
+timelines:
+  chapters:
+    id: chapters
+    label: 
+      en: Chapters
+      fr: Chapitres
+    color: purple
+```
+
 ### 3.2. Display options
 
 ##### • Theme
