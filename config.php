@@ -8,6 +8,7 @@ Kirby::plugin('sylvainjule/subtitler', array(
     'fieldMethods' => require_once __DIR__ . '/lib/fieldMethods.php',
     'translations' => array(
         'en' => require_once __DIR__ . '/lib/languages/en.php',
+        'fr' => require_once __DIR__ . '/lib/languages/fr.php',
     ),
     'api' => array(
     	'routes' => require_once __DIR__ . '/lib/routes.php',
