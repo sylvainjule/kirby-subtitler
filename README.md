@@ -31,6 +31,8 @@ This plugin allows you to sync any content with audio or video files.
 
 ## 1. Installation
 
+> If you are looking to use this field with Kirby 2, please switch to the `kirby-2` branch.
+
 Download and copy this repository to ```/site/plugins/subtitler```
 
 Alternatively, you can install it with composer: ```composer require sylvainjule/subtitler```
