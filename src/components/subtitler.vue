@@ -217,8 +217,22 @@ export default {
 
 			if(nextSub) { return this.currentTime.prop >= nextSub.startprop }
 			else { return false }
-		}
+		},
+		id() {
+	      	return this.$store.state.form.current
+	    },
+	    pageValues() {
+	    	return this.$store.getters["form/values"](this.id)
+	    }
 	},
+	watch: {
+		pageValues: {
+			immediate: true,
+			handler() {
+				this.updateValues()
+			}
+		}
+    },
 	created() {
 		this.$api
 	        .get(this.parent + "/sections/" + this.name)
@@ -233,14 +247,11 @@ export default {
 	        		this.src.url  = response.file.url
 	        		this.src.type = response.file.type
 	        	} 
-
-				this.$subtitler.registerSubtitler(this)
 	        })
 
 	    document.addEventListener('mouseup', this.stopResizing)
 	},
 	destroyed() {
-	    this.$subtitler.unregisterSubtitler(this)
 	    document.removeEventListener('mouseup', this.stopResizing)
 	},
 	methods: {
@@ -487,6 +498,12 @@ export default {
             let t = Math.floor(time)
             return (t-(t%=60))/60+(9<t?'\'':'\'0')+t
 		},
+		updateValues() {
+	        for(let fieldname in this.pageValues) {
+	            let value = this.pageValues[fieldname]
+	            this.setValue(fieldname, value)
+	        }
+		},
 		setValue(fieldname, value) {
 	        try {
 		        for (let datapoint in this.storage) {
@@ -542,9 +559,7 @@ export default {
 	        }
 	    },
 	    updateStructure() {
-	        if(this.storage.subs) {
-	        	this.$subtitler.updateFields('subs', this.storage.subs, this.subs)
-	        }
+	        this.$store.dispatch("form/update", [this.id, this.storage.subs, this.subs])
 	    },
 	    isObject(obj) {
 		    return obj === Object(obj);
