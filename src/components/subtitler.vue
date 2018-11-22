@@ -559,7 +559,9 @@ export default {
 	        }
 	    },
 	    updateStructure() {
-	        this.$store.dispatch("form/update", [this.id, this.storage.subs, this.subs])
+	    	if(this.storage.subs) {
+		        this.$store.dispatch("form/update", [this.id, this.storage.subs, this.subs])
+		    }
 	    },
 	    isObject(obj) {
 		    return obj === Object(obj);
