@@ -500,6 +500,8 @@ export default {
 		},
 		updateValues() {
 	        for(let fieldname in this.pageValues) {
+	        	if(!Object.values(this.storage).includes(fieldname)) continue
+	        		
 	            let value = this.pageValues[fieldname]
 	            this.setValue(fieldname, value)
 	        }
