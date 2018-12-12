@@ -151,8 +151,6 @@ export default {
         file: String,
 		debug: Boolean,
 		timelines: Object,
-		parent: String,
-    	name: String,
 	},
 	computed: {
 		isAudio: function() {
@@ -234,8 +232,7 @@ export default {
 		}
     },
 	created() {
-		this.$api
-	        .get(this.parent + "/sections/" + this.name)
+		this.load()
 	        .then(response => {
 	        	this.theme     = response.theme
 	        	this.debug     = response.debug
