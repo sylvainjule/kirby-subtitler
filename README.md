@@ -8,6 +8,8 @@ This plugin allows you to sync any content with audio or video files.
 
 ## Overview
 
+> This plugin is completely free and published under the MIT license. However, if you are using it in a commercial project and want to help me keep up with maintenance, you can purchase your license(s) through [my affiliate link](https://a.paddle.com/v2/click/1129/36369?link=1170).
+
 - [1. Installation](#1-installation)
 - [2. Blueprint usage](#2-blueprint-usage)
 - [3. Options](#3-options)
