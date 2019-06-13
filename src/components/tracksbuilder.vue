@@ -3,7 +3,7 @@
     	<div :class="['tracksbuilder-button', {error: hasError}, {processing: processing}, {success: success}]" @click="generateVttFiles">
 			<span class="icon">
 				<svg viewBox="0 0 16 16">
-			        <use xlink:href="#icon-refresh" />
+			        <use href="#icon-refresh" />
 			    </svg>
 			</span>
 			<span class="text"><em>{{text}}</em></span>
@@ -14,7 +14,7 @@
 <script>
 
 export default {
-	data() { 
+	data() {
 		return {
 			processing: false,
 			hasError: false,
