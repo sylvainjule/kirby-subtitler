@@ -100,7 +100,7 @@ import ArrowIcon from './icons/arrow.vue'
 
 export default {
 	components: {AudioFile, PlayIcon, PauseIcon, EditIcon, ArrowIcon},
-	data() { 
+	data() {
 		return {
 			src: {
 				id: '',
@@ -217,10 +217,10 @@ export default {
 			else { return false }
 		},
 		id() {
-	      	return this.$store.state.form.current
+	      	return this.$store.state.content.current
 	    },
 	    pageValues() {
-	    	return this.$store.getters["form/values"](this.id)
+	    	return this.$store.getters["content/values"](this.id)
 	    }
 	},
 	watch: {
@@ -243,7 +243,7 @@ export default {
 	        	if(response.file) {
 	        		this.src.url  = response.file.url
 	        		this.src.type = response.file.type
-	        	} 
+	        	}
 	        })
 
 	    document.addEventListener('mouseup', this.stopResizing)
@@ -266,20 +266,20 @@ export default {
 		timeUpdate(e) {
             let currentTime = this.currentPlayer.currentTime
             if (!this.loaded && currentTime > 0) { this.loaded = true }
-            
+
             this.syncCurrentTime(currentTime)
             if (currentTime == this.duration.time && this.isPlaying) {
                 this.playPause()
             }
         },
-		playPause() { 
+		playPause() {
 			let _player = this.currentPlayer
 			if (this.duration.time == 0) this.setDuration()
 
 			if(this.isPlaying) {
 				_player.pause()
 				this.isPlaying = false
-			} 
+			}
 			else {
 				_player.play()
 				this.isPlaying = true
@@ -354,7 +354,7 @@ export default {
         onDocumentMouseUp(e) {
             document.removeEventListener('mouseup', this.onDocumentMouseUp)
             document.removeEventListener('mousemove', this.onDocumentMouseMove)
-    
+
             this.syncProgress(e)
         },
         onDocumentMouseMove(e) {
@@ -409,7 +409,7 @@ export default {
         getNewIndex() {
         	// if there's no sub
         	if(!this.subs.length) return 0
-        		
+
         	// if there's at least one other sub in the timeline
         	if(this.timelineSubs(this.active).length) {
 	        	let nextSub = this.getNextSub(this.start.prop)
@@ -439,7 +439,7 @@ export default {
         				let withSubs = nextTimelines.filter(timeline => {
         					return this.timelineSubs(timeline).length
         				})
-        				if(withSubs.length) { 
+        				if(withSubs.length) {
         					let firstWithSubs = withSubs[0]
         					let firstNextSub  = this.timelineSubs(firstWithSubs)[0]
         					return this.subs.indexOf(firstNextSub)
@@ -498,7 +498,7 @@ export default {
 		updateValues() {
 	        for(let fieldname in this.pageValues) {
 	        	if(!Object.values(this.storage).includes(fieldname)) continue
-	        		
+
 	            let value = this.pageValues[fieldname]
 	            this.setValue(fieldname, value)
 	        }
@@ -552,14 +552,14 @@ export default {
 						this.init()
 					})
 		        }
-	        } 
+	        }
 	        catch(e) {
 	        	console.warn(e)
 	        }
 	    },
 	    updateStructure() {
 	    	if(this.storage.subs) {
-		        this.$store.dispatch("form/update", [this.id, this.storage.subs, this.subs])
+		        this.$store.dispatch("content/update", [this.storage.subs, this.subs, this.id])
 		    }
 	    },
 	    isObject(obj) {
