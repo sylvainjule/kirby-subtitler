@@ -19,7 +19,7 @@
 		<div v-if="fileExists" :class="['subtitler-file', {'debug': debug}]">
 			<div v-if="isVideo" class="subtitler-video">
 				<div class="subtitler-video-ctn">
-					<video ref="videoPlayer">
+					<video ref="videoPlayer" preload="auto">
 						<source :src="src.url"></source>
 					</video>
 				</div>
