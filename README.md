@@ -1,3 +1,5 @@
+> ⚠️ This plugin won't be maintained for Kirby 4+.
+
 # Kirby 3 – Subtitler
 
 This plugin allows you to sync any content with audio or video files.
